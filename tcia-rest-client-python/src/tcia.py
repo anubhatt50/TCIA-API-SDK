@@ -13,7 +13,7 @@ def printServerResponse(response):
 tcia_client = TCIAClient(baseUrl="https://services.cancerimagingarchive.net/services/v4",resource = "TCIA")
 
 try:
-    response = tcia_client.get_series(self, collection = "ACRIN-FMISO-Brain" , modality = None , studyInstanceUid = None , outputFormat = "csv" )
+    response = tcia_client.get_series(collection = "ACRIN-FMISO-Brain" , modality = None , studyInstanceUid = None , outputFormat = "csv" )
     printServerResponse(response);
 
 except urllib2.HTTPError, err:
