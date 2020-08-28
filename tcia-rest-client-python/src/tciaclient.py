@@ -18,7 +18,7 @@ class TCIAClient:
     GET_SERIES_SIZE = "getSeriesSize"
     CONTENTS_BY_NAME = "ContentsByName"
 
-    def __init__(self, apiKey = None , baseUrl, resource):
+    def __init__(self, baseUrl, resource, apiKey = None):
         self.apiKey = apiKey
         self.baseUrl = baseUrl + "/" + resource
 
