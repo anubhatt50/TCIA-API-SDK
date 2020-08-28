@@ -1,5 +1,5 @@
 from tciaclient import TCIAClient
-import urllib2, urllib,sys
+import urllib2, urllib,sys,csv
 
 ####################################  Function to print server response #######
 def printServerResponse(response):
@@ -12,12 +12,14 @@ def printServerResponse(response):
 
 tcia_client = TCIAClient(baseUrl="https://services.cancerimagingarchive.net/services/v4",resource = "TCIA")
 
-f = open('patientID.csv', "w")
+#f = open('patientID.csv', "w")
 
 try:
     response = tcia_client.get_series(collection = "ACRIN-FMISO-Brain" , modality = None , studyInstanceUid = None , outputFormat = "csv" )
-    f.write(response)
-    f.close()
+    with open('patientID.csv', 'w') as f:
+        writer = csv.writer(f)
+        for line in response:
+            writer.writerow(line.decode('utf-8').split(','))
 
 except urllib2.HTTPError, err:
     print "Errror executing program:\nError Code: ", str(err.code), "\nMessage:", err.read()

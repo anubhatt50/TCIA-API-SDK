@@ -47,7 +47,7 @@ class TCIAClient:
     def contents_by_name(self, name = None):
         serviceUrl = self.baseUrl + "/query/" + self.CONTENTS_BY_NAME
         queryParameters = {"name" : name}
-        print serviceUrl
+        print (serviceUrl)
         resp = self.execute(serviceUrl,queryParameters)
         return resp
 
@@ -103,10 +103,10 @@ class TCIAClient:
                     if not chunk: break
                     fp.write(chunk)
         except urllib2.HTTPError, e:
-            print "HTTP Error:",e.code , serviceUrl
+            print ("HTTP Error:",e.code , serviceUrl)
             return False
         except urllib2.URLError, e:
-            print "URL Error:",e.reason , serviceUrl
+            print ("URL Error:",e.reason , serviceUrl)
             return False
 
         return True
