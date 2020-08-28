@@ -12,9 +12,12 @@ def printServerResponse(response):
 
 tcia_client = TCIAClient(baseUrl="https://services.cancerimagingarchive.net/services/v4",resource = "TCIA")
 
+f = open('patientID.csv', "w")
+
 try:
     response = tcia_client.get_series(collection = "ACRIN-FMISO-Brain" , modality = None , studyInstanceUid = None , outputFormat = "csv" )
-    printServerResponse(response);
+    f.write(response)
+    f.close()
 
 except urllib2.HTTPError, err:
     print "Errror executing program:\nError Code: ", str(err.code), "\nMessage:", err.read()
